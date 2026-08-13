@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIBERA — Feria del Libro de No Ficción</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0A12;
+    --bg-elev: #14131F;
+    --panel: #1C1B2B;
+    --cream: #F6DFC6;
+    --cream-soft: rgba(246,223,198,0.68);
+    --blue: #A7C6D9;
+    --sage: #B9CBA1;
+    --pink: #E4A9C0;
+    --peach: #EFC3A6;
+    --gold: #E9C468;
+    --line: rgba(246,223,198,0.14);
+    --radius: 20px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Public Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Baloo 2', sans-serif;
+    margin:0;
+    line-height:1.05;
+  }
+  .mono{font-family:'Space Mono', monospace; letter-spacing:0.02em;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- nav ---------- */
+  .shelf-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,10,18,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .shelf-inner{
+    max-width:1180px; margin:0 auto; padding:0 28px;
+    display:flex; align-items:stretch; justify-content:space-between; gap:8px;
+  }
+  .shelf-brand{
+    display:flex; align-items:center; gap:10px; padding:16px 0;
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size:1.25rem;
+    letter-spacing:0.01em;
+  }
+  .shelf-brand .dot{width:10px;height:10px;border-radius:50%; background:var(--pink);}
+  .spines{display:flex; align-items:flex-end; gap:0;}
+  .spine{
+    appearance:none; border:none; cursor:pointer; background:transparent;
+    font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--cream); padding:14px 14px 12px; height:56px;
+    display:flex; align-items:flex-end; border-bottom:4px solid transparent;
+    transition:border-color .2s ease, background .2s ease; white-space:nowrap;
+  }
+  .spine:nth-child(1){border-bottom-color:rgba(167,198,217,0.35);}
+  .spine:nth-child(2){border-bottom-color:rgba(185,203,161,0.35);}
+  .spine:nth-child(3){border-bottom-color:rgba(228,169,192,0.4);}
+  .spine:nth-child(4){border-bottom-color:rgba(233,196,104,0.4);}
+  .spine:hover, .spine:focus-visible{background:rgba(246,223,198,0.06); outline:none;}
+  .spine:nth-child(1):hover{border-bottom-color:var(--blue);}
+  .spine:nth-child(2):hover{border-bottom-color:var(--sage);}
+  .spine:nth-child(3):hover{border-bottom-color:var(--pink);}
+  .spine:nth-child(4):hover{border-bottom-color:var(--gold);}
+  @media (max-width:720px){.spines{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; overflow:hidden; padding:90px 0 70px;
+    background:
+      radial-gradient(1px 1px at 10% 20%, var(--cream), transparent),
+      radial-gradient(1px 1px at 25% 65%, var(--cream), transparent),
+      radial-gradient(1.5px 1.5px at 40% 15%, var(--cream), transparent),
+      radial-gradient(1px 1px at 60% 40%, var(--cream), transparent),
+      radial-gradient(1.5px 1.5px at 80% 70%, var(--cream), transparent),
+      radial-gradient(1px 1px at 92% 25%, var(--cream), transparent),
+      radial-gradient(1px 1px at 15% 85%, var(--cream), transparent),
+      radial-gradient(1.5px 1.5px at 70% 10%, var(--cream), transparent),
+      radial-gradient(ellipse 55% 45% at 88% 10%, rgba(228,169,192,0.16), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 5% 90%, rgba(167,198,217,0.16), transparent 60%),
+      var(--bg);
+    background-repeat:no-repeat;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    position:relative; z-index:2;
+  }
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .ticket{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--cream); color:var(--bg); padding:8px 16px; border-radius:999px;
+    font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.08em; margin-bottom:26px;
+  }
+  .ticket .sep{opacity:0.45;}
+  .hero h1{
+    font-size:clamp(2.5rem, 5.6vw, 4.4rem); font-weight:700; letter-spacing:-0.005em;
+  }
+  .hero h1 em{font-style:normal; font-weight:800; color:var(--pink);}
+  .hero p.lead{
+    margin-top:20px; font-size:1.12rem; color:var(--cream-soft); max-width:460px; line-height:1.6;
+  }
+  .hero-cta{margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:999px;
+    font-weight:600; font-size:0.95rem; text-decoration:none; border:2px solid transparent;
+    cursor:pointer; transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--pink); color:#241221; box-shadow:0 6px 0 #b97a92;}
+  .btn-ghost{background:transparent; border-color:var(--cream); color:var(--cream);}
+
+  /* signature: open book with planetary ring */
+  .cosmos{position:relative; height:420px; display:flex; align-items:center; justify-content:center;}
+  .planet{position:absolute; border-radius:50%; filter:blur(0.5px);}
+  .p1{width:120px; height:120px; left:6%; top:8%; background:radial-gradient(circle at 32% 30%, #cfe3ee, var(--blue) 60%, #7fa3b8); box-shadow:0 0 40px rgba(167,198,217,0.25);}
+  .p2{width:60px; height:60px; right:10%; top:4%; background:radial-gradient(circle at 32% 30%, #e9d6c0, var(--peach) 60%, #cf9d75);}
+  .p3{width:44px; height:44px; right:2%; bottom:18%; background:radial-gradient(circle at 32% 30%, #d7e6c8, var(--sage) 60%, #8fa678);}
+  .book-orbit{position:relative; width:260px; height:260px; display:flex; align-items:center; justify-content:center;}
+  .ring{
+    position:absolute; width:340px; height:120px; border:2px solid var(--pink);
+    border-radius:50%; opacity:0.55; transform:rotate(-18deg);
+  }
+  .ring.r2{width:300px; height:100px; border-color:var(--gold); opacity:0.35; transform:rotate(-18deg) scale(1.06);}
+  .open-book{
+    position:relative; width:200px; height:140px; z-index:2;
+  }
+  .open-book svg{width:100%; height:100%; overflow:visible;}
+  @media (max-width:900px){.cosmos{height:300px;}}
+
+  .torn{display:block; width:100%; height:36px; margin-top:-1px;}
+
+  section{padding:84px 0;}
+  .section-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    margin-bottom:46px; flex-wrap:wrap;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.1em; color:var(--pink); display:flex; align-items:center; gap:8px; margin-bottom:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--pink); display:inline-block;}
+  .section-head h2{font-size:clamp(1.8rem, 3.2vw, 2.5rem); font-weight:700;}
+  .section-sub{max-width:420px; color:var(--cream-soft); font-size:0.98rem; line-height:1.5;}
+
+  /* organizers strip */
+  .orgs{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:22px 0; background:var(--bg-elev);
+  }
+  .orgs .wrap{display:flex; gap:36px; flex-wrap:wrap; justify-content:space-between;}
+  .orgs-group{font-size:0.82rem; color:var(--cream-soft);}
+  .orgs-group b{
+    display:block; font-family:'Space Mono', monospace; font-size:0.66rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); margin-bottom:4px;
+  }
+
+  /* ---------- programacion ---------- */
+  .prog{background:var(--bg-elev);}
+  .day-tabs{display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap;}
+  .day-tab{
+    appearance:none; border:2px solid var(--cream); background:transparent; color:var(--cream);
+    padding:10px 20px; border-radius:999px; font-family:'Space Mono', monospace; font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:0.05em; cursor:pointer; transition:background .2s, color .2s;
+  }
+  .day-tab.active{background:var(--cream); color:var(--bg);}
+  .day-panel{display:none;}
+  .day-panel.active{display:block;}
+  .agenda-item{
+    display:grid; grid-template-columns:110px 1fr auto; gap:20px; align-items:center;
+    padding:20px 0; border-top:1px solid var(--line);
+  }
+  .agenda-item:last-child{border-bottom:1px solid var(--line);}
+  .agenda-time{font-family:'Space Mono', monospace; font-size:0.85rem; color:var(--pink); font-weight:700;}
+  .agenda-what h3{font-size:1.08rem; font-weight:600; font-family:'Public Sans', sans-serif; margin-bottom:4px;}
+  .agenda-what p{margin:0; color:var(--cream-soft); font-size:0.9rem;}
+  .tag{
+    font-family:'Space Mono', monospace; font-size:0.64rem; text-transform:uppercase;
+    padding:6px 12px; border-radius:999px; white-space:nowrap; color:#161320;
+  }
+  .tag.t-blue{background:var(--blue);}
+  .tag.t-pink{background:var(--pink);}
+  .tag.t-gold{background:var(--gold);}
+  @media (max-width:600px){.agenda-item{grid-template-columns:1fr; gap:6px;}}
+
+  /* ---------- carrusel ---------- */
+  .carousel-wrap{position:relative;}
+  .carousel{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-bottom:16px; scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+  .cover{
+    scroll-snap-align:start; flex:0 0 auto; width:250px; height:320px; border-radius:var(--radius);
+    position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end;
+    padding:20px; color:var(--bg); box-shadow:0 14px 26px -14px rgba(0,0,0,0.5);
+  }
+  .cover::before{content:""; position:absolute; inset:0; background:radial-gradient(120% 90% at 15% 0%, rgba(255,255,255,0.28), transparent 55%);}
+  .cover .cover-tag{font-family:'Space Mono', monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; opacity:0.75; margin-bottom:8px;}
+  .cover h3{font-size:1.3rem; font-weight:700;}
+  .c1{background:linear-gradient(160deg, #cfe3ee, var(--blue) 70%);}
+  .c2{background:linear-gradient(160deg, #f0dcc4, var(--peach) 70%);}
+  .c3{background:linear-gradient(160deg, #dcead0, var(--sage) 70%);}
+  .c4{background:linear-gradient(160deg, #f3d3e2, var(--pink) 70%);}
+  .c5{background:linear-gradient(160deg, #f5e2a8, var(--gold) 70%);}
+  .carousel-hint{margin-top:14px; font-size:0.82rem; color:var(--cream-soft); font-family:'Space Mono', monospace;}
+
+  /* ---------- mapa ---------- */
+  .map-section{background:var(--bg-elev);}
+  .map-grid{display:grid; grid-template-columns:1fr 1.3fr; gap:36px; align-items:stretch;}
+  @media (max-width:860px){.map-grid{grid-template-columns:1fr;}}
+  .map-card{background:var(--panel); border-radius:var(--radius); padding:32px; border:1px solid var(--line);}
+  .map-card h3{font-size:1.35rem; margin-bottom:18px;}
+  .info-row{display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line);}
+  .info-row:first-of-type{border-top:none;}
+  .info-row .ico{
+    width:36px; height:36px; border-radius:10px; background:var(--gold);
+    flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-size:1rem;
+  }
+  .info-row strong{display:block; font-size:0.92rem;}
+  .info-row span{color:var(--cream-soft); font-size:0.88rem;}
+  .map-embed{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); min-height:340px;}
+  .map-embed iframe{width:100%; height:100%; min-height:340px; border:0; display:block; filter:invert(0.92) hue-rotate(180deg) contrast(0.9);}
+
+  /* ---------- contacto ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px; color:var(--cream-soft);}
+  .field input, .field textarea{
+    width:100%; padding:14px 16px; border-radius:12px; border:1.5px solid var(--line);
+    background:var(--panel); font-family:'Public Sans', sans-serif; font-size:0.95rem; color:var(--cream);
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(246,223,198,0.35);}
+  .field input:focus, .field textarea:focus{outline:2px solid var(--pink); outline-offset:1px;}
+  .field textarea{resize:vertical; min-height:120px;}
+  .contact-side{
+    background:var(--cream); color:#241221; border-radius:var(--radius); padding:36px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .contact-side h3{font-size:1.45rem; margin-bottom:12px;}
+  .contact-side p{color:#4a3a44; line-height:1.55;}
+  .social-row{display:flex; gap:12px; margin-top:24px;}
+  .social-row a{
+    width:42px; height:42px; border-radius:50%; background:rgba(36,18,33,0.08);
+    display:flex; align-items:center; justify-content:center; font-size:0.85rem;
+    text-decoration:none; border:1px solid rgba(36,18,33,0.2);
+  }
+
+  footer{padding:36px 0; text-align:center; font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--cream-soft); border-top:1px solid var(--line);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="shelf-nav">
+  <div class="shelf-inner">
+    <div class="shelf-brand"><span class="dot"></span>LIBERA</div>
+    <div class="spines">
+      <button class="spine" onclick="document.getElementById('programacion').scrollIntoView()">Programa</button>
+      <button class="spine" onclick="document.getElementById('galeria').scrollIntoView()">Momentos</button>
+      <button class="spine" onclick="document.getElementById('ubicacion').scrollIntoView()">Ubicación</button>
+      <button class="spine" onclick="document.getElementById('contacto').scrollIntoView()">Contacto</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="ticket">31 AGO – 6 SEP <span class="sep">·</span> CERLALC, BOGOTÁ <span class="sep">·</span> ENTRADA LIBRE</div>
+      <h1>Un universo de <em>no ficción</em> para explorar</h1>
+      <p class="lead">LIBERA es la feria del libro dedicada a la no ficción: siete días de charlas, lanzamientos y talleres en el corazón de Bogotá. Entrada libre para todo público.</p>
+      <div class="hero-cta">
+        <a href="#programacion" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('programacion').scrollIntoView()">Ver programación</a>
+        <a href="#ubicacion" class="btn btn-ghost" onclick="event.preventDefault(); document.getElementById('ubicacion').scrollIntoView()">Cómo llegar</a>
+      </div>
+    </div>
+    <div class="cosmos" aria-hidden="true">
+      <div class="planet p1"></div>
+      <div class="planet p2"></div>
+      <div class="planet p3"></div>
+      <div class="book-orbit">
+        <div class="ring"></div>
+        <div class="ring r2"></div>
+        <div class="open-book">
+          <svg viewBox="0 0 200 140">
+            <path d="M100,18 C80,6 40,2 10,10 L10,120 C40,112 80,116 100,128 Z" fill="#F0DCC4"/>
+            <path d="M100,18 C120,6 160,2 190,10 L190,120 C160,112 120,116 100,128 Z" fill="#E4A9C0"/>
+            <path d="M100,18 L100,128" stroke="#241221" stroke-width="1.5" opacity="0.3"/>
+            <path d="M22,28 C45,22 70,24 92,32" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
+            <path d="M22,48 C45,42 70,44 92,52" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
+            <path d="M22,68 C45,62 70,64 92,72" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
+            <path d="M108,32 C130,24 155,22 178,28" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
+            <path d="M108,52 C130,44 155,42 178,48" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
+            <path d="M108,72 C130,64 155,62 178,68" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<svg class="torn" viewBox="0 0 1200 36" preserveAspectRatio="none">
+  <path d="M0,0 L1200,0 L1200,18 C1150,32 1100,4 1050,20 C1000,34 950,6 900,18 C850,30 800,4 750,18 C700,32 650,6 600,20 C550,34 500,4 450,18 C400,30 350,6 300,20 C250,34 200,4 150,18 C100,30 50,6 0,18 Z" fill="var(--bg-elev)"/>
+</svg>
+
+<section class="orgs">
+  <div class="wrap">
+    <div class="orgs-group"><b>Organiza</b>Universidad de los Andes · Ediciones Uniandes · CERLALC · UNESCO</div>
+    <div class="orgs-group"><b>Apoya</b>Cámara Colombiana del Libro · Bogotá · Planetario de Bogotá · Maloka · El Malpensante</div>
+    <div class="orgs-group"><b>Patrocinan</b>DGP Editores · Linotipia Martínez · Xpress · Auros · Red Conversa</div>
+  </div>
+</section>
+
+<section class="prog" id="programacion">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Agenda</div>
+        <h2>Programación</h2>
+      </div>
+      <p class="section-sub">Reemplaza estos horarios y actividades con los reales de LIBERA.</p>
+    </div>
+
+    <div class="day-tabs">
+      <button class="day-tab active" data-day="1">31 Ago · Lun</button>
+      <button class="day-tab" data-day="2">3 Sep · Jue</button>
+      <button class="day-tab" data-day="3">6 Sep · Dom</button>
+    </div>
+
+    <div class="day-panel active" data-panel="1">
+      <div class="agenda-item">
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-what"><h3>Apertura de LIBERA</h3><p>Inauguración en CERLALC con recorrido por los stands.</p></div>
+        <span class="tag t-blue">General</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:00 PM</div>
+        <div class="agenda-what"><h3>Charla: crónica y periodismo narrativo</h3><p>Conversatorio con autores de no ficción.</p></div>
+        <span class="tag t-pink">Charla</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">5:30 PM</div>
+        <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
+        <span class="tag t-gold">Taller</span>
+      </div>
+    </div>
+
+    <div class="day-panel" data-panel="2">
+      <div class="agenda-item">
+        <div class="agenda-time">11:00 AM</div>
+        <div class="agenda-what"><h3>Ciencia y divulgación</h3><p>Con el Planetario de Bogotá y la Red de Astronomía.</p></div>
+        <span class="tag t-gold">Familiar</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">3:00 PM</div>
+        <div class="agenda-what"><h3>Lanzamiento editorial</h3><p>Firma de libros al finalizar.</p></div>
+        <span class="tag t-pink">Lanzamiento</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">7:00 PM</div>
+        <div class="agenda-what"><h3>Noche de editoriales independientes</h3><p>Mesa con sellos invitados.</p></div>
+        <span class="tag t-blue">Especial</span>
+      </div>
+    </div>
+
+    <div class="day-panel" data-panel="3">
+      <div class="agenda-item">
+        <div class="agenda-time">10:30 AM</div>
+        <div class="agenda-what"><h3>Feria de intercambio</h3><p>Trae un libro, llévate otro.</p></div>
+        <span class="tag t-blue">Comunidad</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">1:00 PM</div>
+        <div class="agenda-what"><h3>Mesa redonda: futuro editorial</h3><p>Con editoriales independientes invitadas.</p></div>
+        <span class="tag t-pink">Charla</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">4:00 PM</div>
+        <div class="agenda-what"><h3>Cierre de LIBERA</h3><p>Agradecimientos y sorteo de libros entre los asistentes.</p></div>
+        <span class="tag t-gold">General</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Galería</div>
+        <h2>Momentos de la feria</h2>
+      </div>
+      <p class="section-sub">Sustituye estas tarjetas por fotos reales de ediciones anteriores.</p>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel" id="carousel">
+        <div class="cover c1"><div class="cover-tag">Foto 01</div><h3>Inauguración</h3></div>
+        <div class="cover c2"><div class="cover-tag">Foto 02</div><h3>Talleres</h3></div>
+        <div class="cover c3"><div class="cover-tag">Foto 03</div><h3>Autores invitados</h3></div>
+        <div class="cover c4"><div class="cover-tag">Foto 04</div><h3>Público joven</h3></div>
+        <div class="cover c5"><div class="cover-tag">Foto 05</div><h3>Firma de libros</h3></div>
+      </div>
+      <p class="carousel-hint">← desliza para ver más →</p>
+    </div>
+  </div>
+</section>
+
+<section class="map-section" id="ubicacion">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Lugar</div>
+        <h2>Cómo llegar</h2>
+      </div>
+    </div>
+    <div class="map-grid">
+      <div class="map-card">
+        <h3>Detalles del lugar</h3>
+        <div class="info-row">
+          <div class="ico">📍</div>
+          <div><strong>Dirección</strong><span>Cl. 70 # 9 – 52, Bogotá — CERLALC</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ico">🗓️</div>
+          <div><strong>Fechas</strong><span>31 de agosto al 6 de septiembre de 2026</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ico">🎟️</div>
+          <div><strong>Entrada</strong><span>Libre</span></div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps?q=Calle+70+%239-52,+Bogot%C3%A1&output=embed" loading="lazy" title="Mapa de ubicación"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="eyebrow">Escríbenos</div>
+      <h2 style="margin-bottom:28px;">Contacto</h2>
+      <form onsubmit="event.preventDefault(); alert('Este formulario es solo de muestra. Conéctalo a un servicio como Formspree para recibir mensajes reales.');">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" placeholder="Tu nombre" required>
+        </div>
+        <div class="field">
+          <label for="email">Correo</label>
+          <input id="email" type="email" placeholder="tu@correo.com" required>
+        </div>
+        <div class="field">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+      </form>
+    </div>
+    <div class="contact-side">
+      <div>
+        <h3>Hablemos</h3>
+        <p>¿Quieres ser expositor, patrocinador o llevar tu editorial a LIBERA? Escríbenos y te contamos cómo participar.</p>
+      </div>
+      <div>
+        <p class="mono" style="font-size:0.85rem; opacity:0.7;">contacto@libera.co</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 LIBERA — Feria del Libro de No Ficción
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.day-tab');
+  const panels = document.querySelectorAll('.day-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.day-panel[data-panel="${tab.dataset.day}"]`).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
