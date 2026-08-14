@@ -41,7 +41,7 @@
   img{max-width:100%;display:block;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
 
-  /* ---------- nav ---------- */
+  /* ---------- navegación ---------- */
   .shelf-nav{
     position:sticky; top:0; z-index:50;
     background:rgba(10,10,18,0.85);
@@ -53,11 +53,19 @@
     display:flex; align-items:stretch; justify-content:space-between; gap:8px;
   }
   .shelf-brand{
-    display:flex; align-items:center; gap:10px; padding:16px 0;
+    display:flex; align-items:center; gap:40px; padding:16px 0;
     font-family:'Baloo 2', sans-serif; font-weight:700; font-size:1.25rem;
     letter-spacing:0.01em;
   }
-  .shelf-brand .dot{width:10px;height:10px;border-radius:50%; background:var(--pink);}
+	
+	
+.shelf-brand img{
+  width:250px;
+  height:60px;
+  object-fit:contain;
+  display:block;
+}	
+
   .spines{display:flex; align-items:flex-end; gap:0;}
   .spine{
     appearance:none; border:none; cursor:pointer; background:transparent;
@@ -77,7 +85,7 @@
   .spine:nth-child(4):hover{border-bottom-color:var(--gold);}
   @media (max-width:720px){.spines{display:none;}}
 
-  /* ---------- hero ---------- */
+  /* ---------- portada ---------- */
   .hero{
     position:relative; overflow:hidden; padding:90px 0 70px;
     background:
@@ -123,7 +131,7 @@
   .btn-primary{background:var(--pink); color:#241221; box-shadow:0 6px 0 #b97a92;}
   .btn-ghost{background:transparent; border-color:var(--cream); color:var(--cream);}
 
-  /* signature: open book with planetary ring */
+  /* ilustración: libro abierto con anillos planetarios */
   .cosmos{position:relative; height:420px; display:flex; align-items:center; justify-content:center;}
   .planet{position:absolute; border-radius:50%; filter:blur(0.5px);}
   .p1{width:120px; height:120px; left:6%; top:8%; background:radial-gradient(circle at 32% 30%, #cfe3ee, var(--blue) 60%, #7fa3b8); box-shadow:0 0 40px rgba(167,198,217,0.25);}
@@ -156,24 +164,33 @@
   .section-head h2{font-size:clamp(1.8rem, 3.2vw, 2.5rem); font-weight:700;}
   .section-sub{max-width:420px; color:var(--cream-soft); font-size:0.98rem; line-height:1.5;}
 
-  /* organizers strip */
+  /* franja de organizadores */
   .orgs{
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-    padding:22px 0; background:var(--bg-elev);
-  }
-  .orgs .wrap{display:flex; gap:36px; flex-wrap:wrap; justify-content:space-between;}
-  .orgs-group{font-size:0.82rem; color:var(--cream-soft);}
-  .orgs-group b{
-    display:block; font-family:'Space Mono', monospace; font-size:0.66rem;
-    text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); margin-bottom:4px;
-  }
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--bg-elev);
+}
 
-  /* ---------- programacion ---------- */
+.orgs-image-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.orgs-image{
+  display:block;
+  width:100%;
+  max-width:1200px;
+  height:auto;
+}
+
+  /* ---------- programación ---------- */
   .prog{background:var(--bg-elev);}
   .day-tabs{display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap;}
   .day-tab{
     appearance:none; border:2px solid var(--cream); background:transparent; color:var(--cream);
-    padding:10px 20px; border-radius:999px; font-family:'Space Mono', monospace; font-size:0.78rem;
+    padding:10px 10px; border-radius:999px; font-family:'Space Mono', monospace; font-size:0.78rem;
     text-transform:uppercase; letter-spacing:0.05em; cursor:pointer; transition:background .2s, color .2s;
   }
   .day-tab.active{background:var(--cream); color:var(--bg);}
@@ -199,9 +216,23 @@
   /* ---------- carrusel ---------- */
   .carousel-wrap{position:relative;}
   .carousel{
-    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
-    padding-bottom:16px; scrollbar-width:none;
-  }
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:16px;
+  scrollbar-width:none;
+  scroll-behavior:smooth;
+  cursor:grab;
+}
+
+.carousel::-webkit-scrollbar{
+  display:none;
+}
+
+.carousel:active{
+  cursor:grabbing;
+}
   .carousel::-webkit-scrollbar{display:none;}
   .cover{
     scroll-snap-align:start; flex:0 0 auto; width:250px; height:320px; border-radius:var(--radius);
@@ -272,9 +303,11 @@
 
 <nav class="shelf-nav">
   <div class="shelf-inner">
-    <div class="shelf-brand"><span class="dot"></span>LIBERA</div>
+    <div class="shelf-brand">
+  <img src="Logo-LIBERA-CREMA.png" alt="LIBERA">
+</div>
     <div class="spines">
-      <button class="spine" onclick="document.getElementById('programacion').scrollIntoView()">Programa</button>
+      <button class="spine" onclick="document.getElementById('programacion').scrollIntoView()">Programación</button>
       <button class="spine" onclick="document.getElementById('galeria').scrollIntoView()">Momentos</button>
       <button class="spine" onclick="document.getElementById('ubicacion').scrollIntoView()">Ubicación</button>
       <button class="spine" onclick="document.getElementById('contacto').scrollIntoView()">Contacto</button>
@@ -286,8 +319,9 @@
   <div class="wrap hero-grid">
     <div>
       <div class="ticket">31 AGO – 6 SEP <span class="sep">·</span> CERLALC, BOGOTÁ <span class="sep">·</span> ENTRADA LIBRE</div>
-      <h1>Un universo de <em>no ficción</em> para explorar</h1>
-      <p class="lead">LIBERA es la feria del libro dedicada a la no ficción: siete días de charlas, lanzamientos y talleres en el corazón de Bogotá. Entrada libre para todo público.</p>
+      <h1>El universo será el protagonista de <em>LIBERA</em></h1>
+      <p class="lead">¿Qué sabemos del universo? ¿Qué significa para la humanidad regresar a la Luna? ¿Qué tan cerca estamos de llegar a Marte? ¿Y qué lugar puede ocupar Colombia en la exploración espacial?
+Estas preguntas estarán en el centro de LIBERA</p>
       <div class="hero-cta">
         <a href="#programacion" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('programacion').scrollIntoView()">Ver programación</a>
         <a href="#ubicacion" class="btn btn-ghost" onclick="event.preventDefault(); document.getElementById('ubicacion').scrollIntoView()">Cómo llegar</a>
@@ -323,11 +357,23 @@
 </svg>
 
 <section class="orgs">
-  <div class="wrap">
-    <div class="orgs-group"><b>Organiza</b>Universidad de los Andes · Ediciones Uniandes · CERLALC · UNESCO</div>
-    <div class="orgs-group"><b>Apoya</b>Cámara Colombiana del Libro · Bogotá · Planetario de Bogotá · Maloka · El Malpensante</div>
-    <div class="orgs-group"><b>Patrocinan</b>DGP Editores · Linotipia Martínez · Xpress · Auros · Red Conversa</div>
+
+  <div class="orgs-image-wrap">
+    <img 
+      src="organiza.png"
+      alt="Organiza"
+      class="orgs-image"
+    >
   </div>
+
+  <div class="orgs-image-wrap">
+    <img 
+      src="apoya-patrocinan.png"
+      alt="Apoya y patrocinan"
+      class="orgs-image"
+    >
+  </div>
+
 </section>
 
 <section class="prog" id="programacion">
@@ -337,13 +383,16 @@
         <div class="eyebrow">Agenda</div>
         <h2>Programación</h2>
       </div>
-      <p class="section-sub">Reemplaza estos horarios y actividades con los reales de LIBERA.</p>
     </div>
 
     <div class="day-tabs">
-      <button class="day-tab active" data-day="1">31 Ago · Lun</button>
-      <button class="day-tab" data-day="2">3 Sep · Jue</button>
-      <button class="day-tab" data-day="3">6 Sep · Dom</button>
+      <button class="day-tab active" data-day="1">31 Ago · Lunes</button>
+		<button class="day-tab" data-day="2">1 Sep · Martes</button>	
+      <button class="day-tab" data-day="3">2 Sep · Miércoles</button>
+		<button class="day-tab" data-day="4">3 Sep · Jueves</button>
+		<button class="day-tab" data-day="5">4 Sep · Viernes</button>
+		<button class="day-tab" data-day="6">5 Sep · Sábado</button>
+      <button class="day-tab" data-day="7">6 Sep · Domingo</button>
     </div>
 
     <div class="day-panel active" data-panel="1">
@@ -406,18 +455,29 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="eyebrow">Galería</div>
-        <h2>Momentos de la feria</h2>
+        <div class="eyebrow">Carrusel de novedades</div>
+        <h2>Lo mejor de la No Ficción</h2>
       </div>
-      <p class="section-sub">Sustituye estas tarjetas por fotos reales de ediciones anteriores.</p>
+      
     </div>
     <div class="carousel-wrap">
+		
       <div class="carousel" id="carousel">
-        <div class="cover c1"><div class="cover-tag">Foto 01</div><h3>Inauguración</h3></div>
-        <div class="cover c2"><div class="cover-tag">Foto 02</div><h3>Talleres</h3></div>
-        <div class="cover c3"><div class="cover-tag">Foto 03</div><h3>Autores invitados</h3></div>
-        <div class="cover c4"><div class="cover-tag">Foto 04</div><h3>Público joven</h3></div>
-        <div class="cover c5"><div class="cover-tag">Foto 05</div><h3>Firma de libros</h3></div>
+        <div class="cover c1"><div class="cover-tag"></div><h3>Universidad Santo Tomás</h3></div>
+        <div class="cover c2"><div class="cover-tag"></div><h3>Artemis Libros</h3></div>
+        <div class="cover c3"><div class="cover-tag"></div><h3>Larousse</h3></div>
+        <div class="cover c4"><div class="cover-tag"></div><h3>Siglo del Hombre</h3></div>
+        <div class="cover c5"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c6"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c7"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c8"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c9"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c10"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c11"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c12"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c13"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c14"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
+		<div class="cover c15"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>  
       </div>
       <p class="carousel-hint">← desliza para ver más →</p>
     </div>
@@ -466,7 +526,7 @@
           <input id="nombre" type="text" placeholder="Tu nombre" required>
         </div>
         <div class="field">
-          <label for="email">Correo</label>
+          <label for="email">Correo electrónico</label>
           <input id="email" type="email" placeholder="tu@correo.com" required>
         </div>
         <div class="field">
@@ -508,6 +568,16 @@
       document.querySelector(`.day-panel[data-panel="${tab.dataset.day}"]`).classList.add('active');
     });
   });
+	
+// CARRUSEL
+  const carousel = document.getElementById('carousel');
+
+carousel.addEventListener('wheel', (e) => {
+  e.preventDefault();
+
+  carousel.scrollLeft += e.deltaY * 6;
+});
+	
 </script>
 
 </body>
