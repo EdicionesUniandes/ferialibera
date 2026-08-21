@@ -9,8 +9,11 @@
 <link rel="icon" href="icono1.png" type="image/png">	
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/jzj5hsb.css">	
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+	
+	
   :root{
     --bg: #0A0A12;
     --bg-elev: #14131F;
@@ -27,18 +30,20 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+	
   body{
-    margin:0;
-    background:var(--bg);
-    color:var(--cream);
-    font-family:'Public Sans', sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
+  margin:0;
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'degular', sans-serif;
+}
+	
   h1,h2,h3{
-    font-family:'Baloo 2', sans-serif;
-    margin:0;
-    line-height:1.05;
-  }
+  font-family:'degular', sans-serif;
+  margin:0;
+  line-height:1.05;
+}
+	
   .mono{font-family:'Space Mono', monospace; letter-spacing:0.02em;}
   a{color:inherit;}
   img{max-width:100%;display:block;}
@@ -72,7 +77,7 @@
   .spines{display:flex; align-items:flex-end; gap:0;}
   .spine{
     appearance:none; border:none; cursor:pointer; background:transparent;
-    font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    font-family:'degular', sans-serif; font-size:0.72rem; text-transform:uppercase;
     letter-spacing:0.06em; color:var(--cream); padding:14px 14px 12px; height:56px;
     display:flex; align-items:flex-end; border-bottom:4px solid transparent;
     transition:border-color .2s ease, background .2s ease; white-space:nowrap;
@@ -90,21 +95,24 @@
 
   /* ---------- portada ---------- */
   .hero{
-    position:relative; overflow:hidden; padding:90px 0 70px;
-    background:
-      radial-gradient(1px 1px at 10% 20%, var(--cream), transparent),
-      radial-gradient(1px 1px at 25% 65%, var(--cream), transparent),
-      radial-gradient(1.5px 1.5px at 40% 15%, var(--cream), transparent),
-      radial-gradient(1px 1px at 60% 40%, var(--cream), transparent),
-      radial-gradient(1.5px 1.5px at 80% 70%, var(--cream), transparent),
-      radial-gradient(1px 1px at 92% 25%, var(--cream), transparent),
-      radial-gradient(1px 1px at 15% 85%, var(--cream), transparent),
-      radial-gradient(1.5px 1.5px at 70% 10%, var(--cream), transparent),
-      radial-gradient(ellipse 55% 45% at 88% 10%, rgba(228,169,192,0.16), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 5% 90%, rgba(167,198,217,0.16), transparent 60%),
-      var(--bg);
-    background-repeat:no-repeat;
-  }
+  position:relative;
+  overflow:hidden;
+  padding:90px 0 70px;
+  background:
+    radial-gradient(
+      ellipse 50% 45% at 5% 90%,
+      rgba(167,198,217,0.25),
+      transparent 65%
+    ),
+    linear-gradient(
+      rgba(10,10,18,0.25),
+      rgba(10,10,18,0.25)
+    ),
+    url('hero-banner.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
   .hero-grid{
     display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
     position:relative; z-index:2;
@@ -113,7 +121,7 @@
   .ticket{
     display:inline-flex; align-items:center; gap:10px;
     background:var(--cream); color:var(--bg); padding:8px 16px; border-radius:999px;
-    font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    font-family:'Degular', sans-serif; font-weight:700; font-size:0.80rem; text-transform:uppercase;
     letter-spacing:0.08em; margin-bottom:26px;
   }
   .ticket .sep{opacity:0.45;}
@@ -169,6 +177,8 @@
 
   /* franja de organizadores */
   .orgs{
+	margin:;
+  padding:0;  
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
   background:var(--bg-elev);
@@ -184,7 +194,7 @@
 .orgs-image{
   display:block;
   width:100%;
-  max-width:1200px;
+  max-width:1000px;
   height:auto;
 }
 
@@ -193,7 +203,7 @@
   .day-tabs{display:flex; gap:10px; margin-bottom:32px; flex-wrap:wrap;}
   .day-tab{
     appearance:none; border:2px solid var(--cream); background:transparent; color:var(--cream);
-    padding:10px 10px; border-radius:999px; font-family:'Space Mono', monospace; font-size:0.78rem;
+    padding:10px 10px; border-radius:999px; font-family:'Degular', sans-serif ; font-size:0.78rem;
     text-transform:uppercase; letter-spacing:0.05em; cursor:pointer; transition:background .2s, color .2s;
   }
   .day-tab.active{background:var(--cream); color:var(--bg);}
@@ -311,7 +321,7 @@
 </div>
     <div class="spines">
       <button class="spine" onclick="document.getElementById('programacion').scrollIntoView()">Programación</button>
-      <button class="spine" onclick="document.getElementById('galeria').scrollIntoView()">Momentos</button>
+      <button class="spine" onclick="document.getElementById('galeria').scrollIntoView()">Novedades</button>
       <button class="spine" onclick="document.getElementById('ubicacion').scrollIntoView()">Ubicación</button>
       <button class="spine" onclick="document.getElementById('contacto').scrollIntoView()">Contacto</button>
     </div>
@@ -330,28 +340,7 @@ Estas preguntas estarán en el centro de LIBERA</p>
         <a href="#ubicacion" class="btn btn-ghost" onclick="event.preventDefault(); document.getElementById('ubicacion').scrollIntoView()">Cómo llegar</a>
       </div>
     </div>
-    <div class="cosmos" aria-hidden="true">
-      <div class="planet p1"></div>
-      <div class="planet p2"></div>
-      <div class="planet p3"></div>
-      <div class="book-orbit">
-        <div class="ring"></div>
-        <div class="ring r2"></div>
-        <div class="open-book">
-          <svg viewBox="0 0 200 140">
-            <path d="M100,18 C80,6 40,2 10,10 L10,120 C40,112 80,116 100,128 Z" fill="#F0DCC4"/>
-            <path d="M100,18 C120,6 160,2 190,10 L190,120 C160,112 120,116 100,128 Z" fill="#E4A9C0"/>
-            <path d="M100,18 L100,128" stroke="#241221" stroke-width="1.5" opacity="0.3"/>
-            <path d="M22,28 C45,22 70,24 92,32" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
-            <path d="M22,48 C45,42 70,44 92,52" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
-            <path d="M22,68 C45,62 70,64 92,72" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
-            <path d="M108,32 C130,24 155,22 178,28" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
-            <path d="M108,52 C130,44 155,42 178,48" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
-            <path d="M108,72 C130,64 155,62 178,68" stroke="#241221" stroke-width="1.2" opacity="0.25" fill="none"/>
-          </svg>
-        </div>
-      </div>
-    </div>
+   
   </div>
 </header>
 
@@ -400,20 +389,25 @@ Estas preguntas estarán en el centro de LIBERA</p>
 
     <div class="day-panel active" data-panel="1">
       <div class="agenda-item">
-        <div class="agenda-time">10:00 AM</div>
-        <div class="agenda-what"><h3>Apertura de LIBERA</h3><p>Inauguración en CERLALC con recorrido por los stands.</p></div>
-        <span class="tag t-blue">General</span>
+        <div class="agenda-time">9:00 AM</div>
+        <div class="agenda-what"><h3>Cuántica y Cosmos: ¿por qué debe existir una teoría del todo?</h3><p>Gustavo Obando León</p></div>
+        <span class="tag t-blue">Charla</span>
       </div>
       <div class="agenda-item">
-        <div class="agenda-time">2:00 PM</div>
-        <div class="agenda-what"><h3>Charla: crónica y periodismo narrativo</h3><p>Conversatorio con autores de no ficción.</p></div>
-        <span class="tag t-pink">Charla</span>
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-what"><h3>Vigilantes de agua dulce: taller de ilustración de la naturaleza</h3><p>Universidad Jorge Tadeo Lozano</p></div>
+        <span class="tag t-pink">Taller</span>
       </div>
       <div class="agenda-item">
         <div class="agenda-time">5:30 PM</div>
         <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
         <span class="tag t-gold">Taller</span>
       </div>
+	<div class="agenda-item">
+        <div class="agenda-time">5:30 PM</div>
+        <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
+        <span class="tag t-gold">Taller</span>
+      </div>	
     </div>
 
     <div class="day-panel" data-panel="2">
@@ -451,7 +445,82 @@ Estas preguntas estarán en el centro de LIBERA</p>
         <span class="tag t-gold">General</span>
       </div>
     </div>
+	  
+	<div class="day-panel" data-panel="4">
+      <div class="agenda-item">
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-what"><h3>Apertura de LIBERA</h3><p>Inauguración en CERLALC con recorrido por los stands.</p></div>
+        <span class="tag t-blue">General</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:00 PM</div>
+        <div class="agenda-what"><h3>Charla: crónica y periodismo narrativo</h3><p>Conversatorio con autores de no ficción.</p></div>
+        <span class="tag t-pink">Charla</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">5:30 PM</div>
+        <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
+        <span class="tag t-gold">Taller</span>
+      </div>
+    </div>  
+	  
+	<div class="day-panel" data-panel="5">
+      <div class="agenda-item">
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-what"><h3>Apertura de LIBERA</h3><p>Inauguración en CERLALC con recorrido por los stands.</p></div>
+        <span class="tag t-blue">General</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:00 PM</div>
+        <div class="agenda-what"><h3>Charla: crónica y periodismo narrativo</h3><p>Conversatorio con autores de no ficción.</p></div>
+        <span class="tag t-pink">Charla</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">5:30 PM</div>
+        <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
+        <span class="tag t-gold">Taller</span>
+      </div>
+    </div> 
+	  
+	<div class="day-panel" data-panel="6">
+      <div class="agenda-item">
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-what"><h3>Apertura de LIBERA</h3><p>Inauguración en CERLALC con recorrido por los stands.</p></div>
+        <span class="tag t-blue">General</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:00 PM</div>
+        <div class="agenda-what"><h3>Charla: crónica y periodismo narrativo</h3><p>Conversatorio con autores de no ficción.</p></div>
+        <span class="tag t-pink">Charla</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">5:30 PM</div>
+        <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
+        <span class="tag t-gold">Taller</span>
+      </div>
+    </div> 
+	  
+	<div class="day-panel" data-panel="7">
+      <div class="agenda-item">
+        <div class="agenda-time">10:00 AM</div>
+        <div class="agenda-what"><h3>Apertura de LIBERA</h3><p>Inauguración en CERLALC con recorrido por los stands.</p></div>
+        <span class="tag t-blue">General</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">2:00 PM</div>
+        <div class="agenda-what"><h3>Charla: crónica y periodismo narrativo</h3><p>Conversatorio con autores de no ficción.</p></div>
+        <span class="tag t-pink">Conversatorio</span>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">5:30 PM</div>
+        <div class="agenda-what"><h3>Taller de escritura de ensayo</h3><p>Cupos limitados, inscripción en el punto de información.</p></div>
+        <span class="tag t-gold">Taller</span>
+      </div>
+    </div>  
+	  
   </div>
+	
+	
 </section>
 
 <section id="galeria">
@@ -466,8 +535,8 @@ Estas preguntas estarán en el centro de LIBERA</p>
     <div class="carousel-wrap">
 		
       <div class="carousel" id="carousel">
-        <div class="cover c1"><div class="cover-tag"></div><h3>Universidad Santo Tomás</h3></div>
-        <div class="cover c2"><div class="cover-tag"></div><h3>Artemis Libros</h3></div>
+        <div class="cover c1"><img src="CubiertasSantoto.png" alt="Universidad Santo Tomás"><div class="cover-content"><h3>Universidad Santo Tomás</h3></div></div>
+        <div class="cover c2"><img src="CubiertasSantoto1.png" alt="Artemis"><div class="cover-content"></div><h3>Artemis Libros</h3></div>
         <div class="cover c3"><div class="cover-tag"></div><h3>Larousse</h3></div>
         <div class="cover c4"><div class="cover-tag"></div><h3>Siglo del Hombre</h3></div>
         <div class="cover c5"><div class="cover-tag"></div><h3>Universidad Nacional</h3></div>
@@ -545,7 +614,7 @@ Estas preguntas estarán en el centro de LIBERA</p>
         <p>¿Quieres ser expositor, patrocinador o llevar tu editorial a LIBERA? Escríbenos y te contamos cómo participar.</p>
       </div>
       <div>
-        <p class="mono" style="font-size:0.85rem; opacity:0.7;">contacto@libera.co</p>
+        <p class="mono" style="font-size:0.85rem; opacity:0.7;">jcortes@uniandes.edu.co</p>
         <div class="social-row">
           <a href="#" aria-label="Instagram">IG</a>
           <a href="#" aria-label="Facebook">FB</a>
