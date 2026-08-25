@@ -6,4 +6,3 @@ Página web de LIBERA — Feria del Libro de No Ficción
 ![apoya patrocinan](apoya-patrocinan.png)
 ![organiza](organiza.png)
 ![Cubierta Santoto](CubiertasSantoto1.png)
-![Cubierta Santoto](CubiertasSantoto.png)
