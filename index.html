@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/jzj5hsb.css">	
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">	
 <style>
 	
 	
@@ -311,6 +312,34 @@
   .map-embed iframe{width:100%; height:100%; min-height:340px; border:0; display:block; filter:invert(0.92) hue-rotate(180deg) contrast(0.9);}
 
   /* ---------- contacto ---------- */
+	
+	.contact-title{
+  font-size:clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight:700;
+  margin:0 0 28px;
+}
+	
+	.form-success,
+.form-error{
+  display:none;
+  padding:14px 18px;
+  border-radius:12px;
+  margin-bottom:20px;
+  font-size:0.9rem;
+}
+
+.form-success{
+  background:rgba(228,169,192,0.15);
+  border:1px solid var(--pink);
+  color:var(--cream);
+}
+
+.form-error{
+  background:rgba(239,195,166,0.12);
+  border:1px solid var(--peach);
+  color:var(--cream);
+}
+			
   .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
   @media (max-width:860px){.contact-grid{grid-template-columns:1fr;}}
   .field{margin-bottom:18px;}
@@ -330,10 +359,25 @@
   .contact-side p{color:#4a3a44; line-height:1.55;}
   .social-row{display:flex; gap:12px; margin-top:24px;}
   .social-row a{
-    width:42px; height:42px; border-radius:50%; background:rgba(36,18,33,0.08);
-    display:flex; align-items:center; justify-content:center; font-size:0.85rem;
-    text-decoration:none; border:1px solid rgba(36,18,33,0.2);
-  }
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(36,18,33,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+  text-decoration:none;
+  border:1px solid rgba(36,18,33,0.2);
+  transition:all .2s ease;
+}
+
+.social-row a:hover{
+  transform:translateY(-3px);
+  background:#09090a;
+  color:var(--cream);
+  border-color:#241221;
+}
 
   footer{padding:36px 0; text-align:center; font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--cream-soft); border-top:1px solid var(--line);}
 
@@ -778,21 +822,30 @@ Estas preguntas estarán en el centro de LIBERA</p>
   <div class="wrap contact-grid">
     <div>
       <div class="eyebrow">Escríbenos</div>
-      <h2 style="margin-bottom:28px;">Contacto</h2>
-      <form onsubmit="event.preventDefault(); alert('Este formulario es solo de muestra. Conéctalo a un servicio como Formspree para recibir mensajes reales.');">
+      <h2 class="contact-title">Contacto</h2>
+		
+	<div data-fs-success class="form-success">
+  ¡Mensaje enviado! Gracias por escribirnos.
+</div>
+
+<div data-fs-error class="form-error"></div>	
+		
+      <form id="contact-form">
         <div class="field">
           <label for="nombre">Nombre</label>
-          <input id="nombre" type="text" placeholder="Tu nombre" required>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" data-fs-field required>
         </div>
         <div class="field">
           <label for="email">Correo electrónico</label>
-          <input id="email" type="email" placeholder="tu@correo.com" required>
+          <input id="email" name="email" type="email" placeholder="tu@correo.com" data-fs-field required>
         </div>
         <div class="field">
           <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas..." data-fs-field required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        <button type="submit" class="btn btn-primary" data-fs-submit-btn>
+  Enviar mensaje
+</button>
       </form>
     </div>
     <div class="contact-side">
@@ -802,11 +855,28 @@ Estas preguntas estarán en el centro de LIBERA</p>
       </div>
       <div>
         <p class="mono" style="font-size:0.85rem; opacity:0.7;">jcortes@uniandes.edu.co</p>
-        <div class="social-row">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="X">X</a>
-        </div>
+		  <div class="social-row">
+  <a href="https://www.instagram.com/ediciones.uniandes" aria-label="Instagram" target="_blank">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+
+  <a href="https://www.facebook.com/ediciones.uniandes" aria-label="Facebook" target="_blank">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+			  
+  <a href="https://www.linkedin.com/company/ediciones-uniandes" aria-label="LinkedIn" target="_blank">
+    <i class="fa-brands fa-linkedin-in"></i>
+  </a>
+
+  <a href="https://www.youtube.com/@edicionesuniandes6094" aria-label="YouTube" target="_blank">
+    <i class="fa-brands fa-youtube"></i>
+  </a>		  
+
+  <a href="https://x.com/Ed_Uniandes" aria-label="X" target="_blank">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+</div>
+		  
       </div>
     </div>
   </div>
@@ -839,5 +909,20 @@ carousel.addEventListener('wheel', (e) => {
 	
 </script>
 
+<script>
+  window.formspree =
+    window.formspree ||
+    function () {
+      (formspree.q = formspree.q || []).push(arguments);
+    };
+
+  formspree('initForm', {
+    formElement: '#contact-form',
+    formId: 'mqpzrwzg'
+  });
+</script>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>	
+	
 </body>
 </html>
