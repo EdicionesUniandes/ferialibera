@@ -18,3 +18,5 @@ Página web de LIBERA — Feria del Libro de No Ficción
 ![11Cubierta ElBosque](CubiertaElBosque1.png)
 ![12Cubierta Distrital](CubiertaDistrital1.png)
 ![13Cubierta Artemis](CubiertaArtemis1.png)
+![14Cubierta Andes](CubiertaAndes1.png)
+![15Cubierta Siglo](CubiertaSiglo1.png)
